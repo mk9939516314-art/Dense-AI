@@ -1,61 +1,30 @@
-# Dense AI — Website
+# Dense AI
 
-Human Data Infrastructure for AI. Built with Next.js 14, React, TypeScript and Tailwind CSS.
+Marketing site for Dense AI, built with Next.js, React, Tailwind and three.js.
 
-## Getting started
+## What is in here
+
+- `app/page.tsx`: home page. The hero is a WebGL point-cloud scene (`components/scene.tsx`) that labels a street corner as a sweep plane crosses it. It respects `prefers-reduced-motion` and falls back to the plain copy if WebGL is unavailable.
+- `app/*`: services, workforce, quality, solutions, about, careers, contributors, contact, privacy, terms.
+- `components/assistant/*`: the "Ask Dense" chat assistant (chatbot, support tokens, executive handoff).
+- `app/admin`: executive console for chats, support tokens and bot notes.
+- `lib/config.ts`: all site copy and structured content.
+- `.claude/skills`: design skills used to build the UI (Anthropic frontend-design, impeccable, taste-skill, ui-ux-pro-max, Vercel web-design-guidelines and React best practices, Everything Claude Code design skills).
+
+## Run
 
 ```bash
 npm install
+cp .env.example .env.local   # fill in the values you need
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+## Environment variables
 
-## Production build
+See `.env.example`. Set the same values in Vercel under Project Settings, Environment Variables. `.env.local` is never committed.
 
-```bash
-npm run build
-npm start
-```
-
-## Production environment variables
-
-The project intentionally does not contain real third-party credentials.
-
-For production contact-form delivery, configure:
-
-```bash
-RESEND_API_KEY=your_resend_api_key
-CONTACT_FROM_EMAIL=Dense AI Website <verified-sender@your-domain.com>
-CONTACT_TO_EMAIL=densee.ai@gmail.com
-NEXT_PUBLIC_SITE_URL=https://your-real-domain.example
-```
-
-`CONTACT_FROM_EMAIL` must be a sender/domain accepted by your email provider. Do not commit secrets to source control.
-
-If the email service variables are missing, the contact form will **not** pretend that a message was sent. It shows a clear error and provides a direct email option instead.
-
-## Routes
-
-- `/` — homepage
-- `/services` — services overview
-- `/services/[slug]` — service detail pages
-- `/workforce` — workforce model
-- `/quality` — quality and validation
-- `/solutions` — solution patterns
-- `/about` — company and founders
-- `/careers` — careers contact
-- `/contributors` — contributor network
-- `/contact` — project intake
-- `/privacy` — privacy policy draft
-- `/terms` — terms draft
-- `/robots.txt` — generated robots rules
-- `/sitemap.xml` — generated when `NEXT_PUBLIC_SITE_URL` is configured
-
-## Quality and security notes
-
-- No fabricated customer logos, testimonials, statistics or certifications are included.
-- Security wording is intentionally project-specific and does not claim SOC 2, ISO, HIPAA, GDPR certification or similar credentials without evidence.
-- The contact API validates input, uses a honeypot field and applies a lightweight per-instance rate limit. For high-volume production traffic, add an edge/WAF rate limiter.
-- Do not put secrets or highly sensitive personal information into the public project form.
-- Review the Privacy Policy and Terms with qualified legal counsel before relying on them in production.
+- Assistant: `CHAT_API_KEY`, `CHAT_BASE_URL`, `CHAT_MODEL`
+- Support tokens: `RESEND_API_KEY`, `SUPPORT_TO`, `SUPPORT_FROM`
+- Handoff storage: `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`
+- Admin: `ADMIN_USER`, `ADMIN_PASSWORD`, `ADMIN_SECRET`
+- Optional: `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_DENSE_MEET_URL` (meeting actions appear in the assistant only when this is set)

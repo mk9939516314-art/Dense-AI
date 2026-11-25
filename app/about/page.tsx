@@ -1,93 +1,45 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { Section, SectionHeader } from "@/components/section";
+import { PageHead, Section } from "@/components/section";
+import { FounderCard } from "@/components/founder-card";
 import { founders } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "About Dense AI",
-  description:
-    "Meet the Dense AI founding team and learn how the company approaches human data infrastructure.",
+  description: "Meet the Dense AI founding team and learn how the company approaches human data infrastructure.",
+};
+
+const linkedin: Record<string, string> = {
+  "Anikesh Aman": "https://www.linkedin.com/in/anikesh-aman-527404210/",
+  Arpita: "https://www.linkedin.com/in/arpita-dwivedi-5a21213a5",
 };
 
 export default function AboutPage() {
   return (
     <>
+      <PageHead
+        title="Human operations for the data layer behind AI."
+        description="Dense AI focuses on the people, workflows and quality systems required to produce useful human data for AI teams."
+      />
       <Section>
-        <SectionHeader
-          label="About"
-          heading="Human operations for the data layer behind AI."
-          description="Dense AI focuses on the people, workflows and quality systems required to produce useful human data for AI teams."
-        />
-
-        <div className="mt-12 max-w-3xl space-y-5 text-base leading-relaxed text-muted dark:text-white/60">
-          <p>
-            The operating model is built around project-specific requirements
-            rather than one fixed workforce or annotation recipe.
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-20">
+          <p className="text-[1.15rem] leading-relaxed text-ink">
+            The operating model is built around project-specific requirements rather than one fixed workforce or annotation recipe.
           </p>
-
-          <p>
-            Projects can move from a controlled pilot into larger production
-            after instructions, contributor requirements and quality checks
-            have been validated.
+          <p className="text-[1.15rem] leading-relaxed text-body">
+            Projects can move from a controlled pilot into larger production after instructions, contributor requirements and quality checks have been validated.
           </p>
         </div>
       </Section>
-
-      <Section
-        id="founders"
-        className="border-t border-border bg-soft dark:border-white/10 dark:bg-white/[0.02]"
-      >
-        <SectionHeader
-          label="Our founders"
-          heading="Leadership across technology, operations and business."
-        />
-
-        <div className="mt-12 space-y-4">
-          {founders.map((f) => (
-            <div
-              key={f.name}
-              className="flex flex-col gap-5 rounded-2xl border border-border bg-white p-4 dark:border-white/10 dark:bg-ink sm:flex-row sm:items-center"
-            >
-              <Image
-                src={f.image}
-                alt={`Photo of ${f.name}`}
-                width={72}
-                height={72}
-                className="h-[72px] w-[72px] shrink-0 rounded-xl object-cover"
-              />
-
-              <div className="min-w-0 flex-1">
-                <h2 className="font-semibold text-ink dark:text-white">
-                  {f.name}
-                </h2>
-
-                <p className="mt-1 text-sm font-medium text-blue">
-                  {f.role}
-                </p>
-
-                <p className="mt-1 text-sm text-muted dark:text-white/60">
-                  {f.focus}
-                </p>
-              </div>
-
-              <a
-                href={
-                  f.name === "Anikesh Aman"
-                    ? "https://www.linkedin.com/in/anikesh-aman-527404210/"
-                    : f.name === "Arpita"
-                      ? "https://www.linkedin.com/in/arpita-dwivedi-5a21213a5"
-                      : "https://www.linkedin.com/in/dishaprajapat"
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex shrink-0 items-center justify-center rounded-full border border-blue/30 px-4 py-2 text-sm font-medium text-blue transition-colors hover:border-blue hover:bg-blue/5 focus-ring"
-              >
-                LinkedIn ↗
-              </a>
-            </div>
-          ))}
+      <section id="founders" className="border-t border-line bg-soft">
+        <div className="wrap py-20 lg:py-28">
+          <h2 className="display-2 max-w-3xl">Leadership across technology, operations and business.</h2>
+          <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {founders.map((f) => (
+              <FounderCard key={f.name} {...f} href={linkedin[f.name] ?? "https://www.linkedin.com/in/dishaprajapat"} />
+            ))}
+          </div>
         </div>
-      </Section>
+      </section>
     </>
   );
 }

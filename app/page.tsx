@@ -1,1133 +1,350 @@
 import Image from "next/image";
-
-import {
-
-  ArrowRight,
-
-  Database,
-
-  Tag,
-
-  Image as ImageIcon,
-
-  Mic,
-
-  Languages,
-
-  ClipboardCheck,
-
-  ThumbsUp,
-
-  ShieldCheck,
-
-  Lock,
-
-  KeyRound,
-
-  Search,
-
-  PackageCheck,
-
-  Settings2,
-
-  Eye,
-
-} from "lucide-react";
-
-import { Section, SectionHeader } from "@/components/section";
-
-import { ServiceCard } from "@/components/service-card";
-
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, Eye, KeyRound, Lock, PackageCheck, Search, Settings2 } from "lucide-react";
+import Workspace from "@/components/workspace";
+import Scene from "@/components/scene";
 import { Faq } from "@/components/faq";
-
 import { ProjectForm } from "@/components/project-form";
-
+import { AskAssistant } from "@/components/assistant/ask-button";
 import {
-
   capabilities,
-
   founders,
-
   infraSteps,
-
   pilotSteps,
-
   qualityCards,
-
   qualitySteps,
-
   securityCards,
-
-  services,
-
   serviceDetails,
-
   site,
-
   whyPillars,
-
   workforcePillars,
-
 } from "@/lib/config";
 
+const tones = ["coral", "violet", "cyan", "mint", "amber", "blue"] as const;
+const toneVar: Record<(typeof tones)[number], string> = {
+  coral: "var(--coral)",
+  violet: "var(--violet)",
+  cyan: "var(--cyan)",
+  mint: "var(--mint)",
+  amber: "var(--amber)",
+  blue: "var(--blue)",
+};
 
+const securityIcons = [Lock, KeyRound, Search, PackageCheck, Settings2, Eye];
 
-const serviceIcons = [
+const linkedin: Record<string, string> = {
+  "Anikesh Aman": "https://www.linkedin.com/in/anikesh-aman-527404210/",
+  Arpita: "https://www.linkedin.com/in/arpita-dwivedi-5a21213a5",
+};
 
-  Database,
-
-  Tag,
-
-  ImageIcon,
-
-  Mic,
-
-  Languages,
-
-  ClipboardCheck,
-
-  ThumbsUp,
-
-  ShieldCheck,
-
-];
-
-
-
-const securityIcons = [
-
-  Lock,
-
-  KeyRound,
-
-  Search,
-
-  PackageCheck,
-
-  Settings2,
-
-  Eye,
-
-];
-
-
+const workforceLifecycle = ["Recruitment", "Qualification", "Training", "Task allocation", "Monitoring", "Quality control"];
 
 export default function Home() {
-
   return (
-
     <div id="top">
-
       {/* HERO */}
-
-      <section className="relative overflow-hidden border-b border-border bg-grid dark:border-white/10">
-
-        <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full glow-blue" />
-
-        <div className="pointer-events-none absolute -right-24 top-10 h-96 w-96 rounded-full glow-violet" />
-
-
-
-        <Section className="grid items-center gap-8 py-10 sm:gap-10 sm:py-14 lg:gap-14 lg:py-32">
-
-          <div>
-
-            <p className="text-xs font-medium uppercase tracking-[0.14em] text-blue">
-
-              Human data infrastructure for AI
-
-            </p>
-
-
-
-            <h1 className="mt-4 text-5xl font-semibold leading-[1.05] tracking-tight text-ink dark:text-white sm:text-6xl lg:text-7xl">
-
-              Human data.
-
-              <br />
-
-              <span className="text-gradient">Built for AI.</span>
-
-            </h1>
-
-
-
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-muted dark:text-white/60 lg:text-lg">
-
-              Dense AI helps AI and machine learning teams collect, annotate,
-
-              evaluate and manage the human data required to build better AI
-
-              systems.
-
-            </p>
-
-
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-
-              <a
-
-                href="#contact"
-
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-white transition-transform hover:scale-[1.02] focus-ring dark:bg-white dark:text-ink"
-
-              >
-
-                Start a Project <ArrowRight size={16} />
-
-              </a>
-
-
-
-              <a
-
-                href="#services"
-
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white px-6 py-3.5 text-sm font-medium text-ink transition-colors hover:border-ink focus-ring dark:border-white/10 dark:bg-ink dark:text-white dark:hover:border-white/30"
-
-              >
-
-                Explore Services
-
-              </a>
-
-            </div>
-
+      <section className="relative isolate overflow-hidden bg-navy text-white">
+        <Scene className="absolute inset-0" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#070B1C_0%,rgba(7,11,28,0.88)_34%,rgba(7,11,28,0)_68%)] max-lg:bg-[linear-gradient(180deg,rgba(7,11,28,0.2)_0%,#070B1C_78%)]" />
+        <div className="wrap relative flex min-h-[max(40rem,calc(100svh-68px))] flex-col justify-end pb-10 pt-24 lg:pb-12">
+          <h1 className="display-1 max-w-[11ch] text-white">
+            Human data, built for AI.
+          </h1>
+          <p className="lede mt-7 max-w-[34rem] !text-white/75">
+            Dense AI helps AI and machine learning teams collect, annotate, evaluate and manage the human data required to build better AI systems.
+          </p>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+            <Link href="#contact" className="btn btn-light">
+              Start a project <ArrowRight size={17} aria-hidden="true" />
+            </Link>
+            <Link href="#services" className="link-u w-fit text-[0.97rem] font-semibold text-white">
+              Explore services
+            </Link>
           </div>
-
-
-
-          <div className="relative">
-
-            <div className="relative overflow-hidden rounded-3xl border border-border bg-white px-4 py-6 shadow-[0_20px_60px_rgba(16,24,45,0.08)] dark:border-white/10 dark:bg-ink sm:px-8 sm:py-10">
-
-              <div className="pointer-events-none absolute inset-0 bg-grid opacity-60 dark:opacity-20" />
-
-
-
-              <div className="relative flex flex-col items-center gap-5 text-center">
-
-                <Image
-
-                  src="/logo.png"
-
-                  alt="Dense AI logo"
-
-                  width={132}
-
-                  height={132}
-
-                  className="aspect-square h-20 w-20 object-contain sm:h-24 sm:w-24 lg:h-32 lg:w-32"
-
-                  priority
-
-                />
-
-
-
-                <div className="relative grid w-full grid-cols-3 gap-2 sm:gap-3">
-
-                  <InfoChip label="Human" value="Data layer" />
-
-                  <InfoChip label="Quality" value="Control" />
-
-                  <InfoChip label="Scale" value="Workflows" />
-
-                </div>
-
-              </div>
-
-            </div>
-
+          <div className="mt-14 flex flex-col gap-3 border-t border-white/15 pt-5">
+            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-[0.88rem] text-white/80">
+              {capabilities.map((c, i) => (
+                <li key={c} className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: toneVar[tones[i % tones.length]] }} aria-hidden="true" />
+                  {c}
+                </li>
+              ))}
+            </ul>
+            <p className="text-[0.8rem] text-white/50">Illustrative point cloud. Not client data.</p>
           </div>
-
-        </Section>
-
-
-
-        {/* CAPABILITY STRIP */}
-
-        <div className="border-t border-border bg-white dark:border-white/10 dark:bg-navy">
-
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-3 px-6 py-6 lg:px-10">
-
-            {capabilities.map((item) => (
-
-              <span
-
-                key={item}
-
-                className="text-xs font-medium uppercase tracking-wider text-muted dark:text-white/50"
-
-              >
-
-                {item}
-
-              </span>
-
-            ))}
-
-          </div>
-
         </div>
-
       </section>
 
-
-
-      {/* HUMAN DATA INFRASTRUCTURE WORKFLOW */}
-
-      <Section>
-
-        <SectionHeader
-
-          heading="The operational layer behind better AI."
-
-          description="Modern AI systems depend on high-quality human data. Dense AI manages the people, processes and quality systems required to collect, annotate and evaluate that data."
-
-        />
-
-
-
-        <div className="mt-14 grid gap-6 md:grid-cols-5">
-
-          {infraSteps.map((step, index) => (
-
-            <div key={step.number} className="relative">
-
-              <div className="rounded-2xl border border-border bg-white p-5 dark:border-white/10 dark:bg-ink">
-
-                <span className="text-xs font-medium text-blue">
-
-                  {step.number}
-
-                </span>
-
-
-
-                <h3 className="mt-2 text-sm font-semibold text-ink dark:text-white">
-
-                  {step.title}
-
-                </h3>
-
-
-
-                <p className="mt-1.5 text-xs leading-relaxed text-muted dark:text-white/60">
-
-                  {step.description}
-
-                </p>
-
-              </div>
-
-
-
-              {index < infraSteps.length - 1 && (
-
-                <ArrowRight
-
-                  size={16}
-
-                  className="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-border dark:text-white/10 md:block"
-
-                />
-
-              )}
-
-            </div>
-
-          ))}
-
+      {/* LABEL REVIEW */}
+      <section className="band border-b border-line">
+        <div className="wrap grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div>
+            <h2 className="display-2">A label is not done until a second person agrees.</h2>
+            <p className="lede mt-6">Annotators label, reviewers correct, and only accepted work moves on. This is the loop every Dense AI project runs.</p>
+          </div>
+          <Workspace />
         </div>
-
-      </Section>
-
-
+      </section>
 
       {/* SERVICES */}
-
-      <Section
-
-        id="services"
-
-        className="border-t border-border bg-soft dark:border-white/10 dark:bg-white/[0.02]"
-
-      >
-
-        <SectionHeader
-
-          label="Services"
-
-          heading="AI data services built around your workflow."
-
-          description="From raw data collection to final evaluation, Dense AI manages the human workflows behind AI development."
-
-        />
-
-
-
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-
-          {services.map((service, index) => (
-
-            <ServiceCard
-
-              key={service.number}
-
-              {...service}
-
-              icon={serviceIcons[index]}
-
-              href={`/services/${serviceDetails[index].slug}`}
-
-            />
-
-          ))}
-
+      <section id="services" className="band">
+        <div className="wrap grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <h2 className="display-2">AI data services built around your workflow.</h2>
+            <p className="lede mt-6">From raw data collection to final evaluation, Dense AI manages the human workflows behind AI development.</p>
+            <Link href="/services" className="link-u mt-8 inline-flex w-fit items-center gap-2 text-[0.97rem] font-semibold text-ink">
+              All services <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
+          <ul className="border-b border-line">
+            {serviceDetails.map((s, i) => (
+              <li key={s.slug} className="border-t border-line">
+                <Link
+                  href={`/services/${s.slug}`}
+                  className="group grid grid-cols-[auto_1fr_auto] items-start gap-x-5 px-1 py-6 transition-colors duration-200 hover:bg-surface sm:px-4 sm:py-7"
+                >
+                  <span className="mt-2.5 h-3 w-3 rounded-[3px] transition-transform duration-300 ease-out group-hover:scale-125" style={{ background: toneVar[tones[i % tones.length]] }} aria-hidden="true" />
+                  <span>
+                    <span className="display-3 block">{s.title}</span>
+                    <span className="mt-2 block max-w-lg text-[0.97rem] leading-relaxed text-body">{s.description}</span>
+                  </span>
+                  <ArrowUpRight size={22} className="mt-1.5 text-muted transition-[transform,color] duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink" aria-hidden="true" />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
+      </section>
 
-      </Section>
+      {/* HOW A PROJECT RUNS */}
+      <section className="band border-t border-line bg-surface">
+        <div className="wrap">
+          <div className="max-w-3xl">
+            <h2 className="display-2">The operational layer behind better AI.</h2>
+            <p className="lede mt-6">
+              Modern AI systems depend on high-quality human data. Dense AI manages the people, processes and quality systems required to collect, annotate and evaluate that data.
+            </p>
+          </div>
 
+          <ol className="relative mt-16 grid gap-10 md:grid-cols-5 md:gap-6">
+            <span className="absolute left-[0.6rem] top-2 h-[calc(100%-1rem)] w-px bg-line md:left-0 md:top-[0.62rem] md:h-px md:w-full" aria-hidden="true" />
+            {infraSteps.map((step, i) => (
+              <li key={step.number} className="relative pl-9 md:pl-0 md:pr-4">
+                <span
+                  className="absolute left-0 top-1 grid h-5 w-5 place-items-center rounded-full border-2 border-surface md:static md:mb-6"
+                  style={{ background: toneVar[tones[i % tones.length]] }}
+                  aria-hidden="true"
+                />
+                <p className="font-mono text-xs text-muted">{step.number}</p>
+                <h3 className="display-3 mt-1 !text-[1.3rem]">{step.title}</h3>
+                <p className="mt-2 text-[0.95rem] leading-relaxed text-body">{step.description}</p>
+              </li>
+            ))}
+          </ol>
 
+          {/* Pilot to production: the stairs are the point, so each step is taller than the last. */}
+          <div className="mt-24 grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
+            <div>
+              <h2 className="display-2">From pilot to production.</h2>
+              <p className="lede mt-5">Start small, prove the instructions and quality controls, then scale the workforce.</p>
+            </div>
+            <ol className="grid grid-cols-2 items-end gap-3 sm:grid-cols-4">
+              {pilotSteps.map((p, i) => (
+                <li
+                  key={p.number}
+                  className="flex flex-col justify-end rounded-xl p-4 text-white"
+                  style={{
+                    minHeight: `${9 + i * 3.1}rem`,
+                    background: ["#2B3350", "#1B47FF", "#6B3DF5", "#0A0F24"][i],
+                  }}
+                >
+                  <p className="font-mono text-xs text-white/60">{p.number}</p>
+                  <h3 className="mt-1 font-display text-xl font-semibold tracking-tight text-white">{p.title}</h3>
+                  <p className="mt-2 text-[0.85rem] leading-snug text-white/75">{p.description}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
 
       {/* WORKFORCE */}
-
-      <Section
-
-        id="workforce"
-
-        className="border-t border-border dark:border-white/10"
-
-      >
-
-        <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
-
+      <section id="workforce" className="band border-t border-line">
+        <div className="wrap grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
           <div>
-
-            <p className="text-xs font-medium uppercase tracking-[0.14em] text-blue">
-
-              Workforce
-
+            <h2 className="display-2">A scalable human workforce.</h2>
+            <p className="lede mt-6">
+              Large AI projects often require hundreds or thousands of human contributors. Dense AI manages contributor recruitment, qualification, training, task allocation, monitoring and quality control.
             </p>
-
-
-
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink dark:text-white sm:text-4xl lg:text-5xl">
-
-              A scalable human workforce.
-
-            </h2>
-
-
-
-            <p className="mt-4 text-base leading-relaxed text-muted dark:text-white/60 lg:text-lg">
-
-              Large AI projects often require hundreds or thousands of human
-
-              contributors. Dense AI manages contributor recruitment,
-
-              qualification, training, task allocation, monitoring and quality
-
-              control.
-
-            </p>
-
-
-
-            <div className="mt-8 space-y-5">
-
-              {workforcePillars.map((pillar) => (
-
-                <div
-
-                  key={pillar.title}
-
-                  className="border-l-2 border-blue pl-4"
-
-                >
-
-                  <h3 className="text-sm font-semibold text-ink dark:text-white">
-
-                    {pillar.title}
-
-                  </h3>
-
-
-
-                  <p className="mt-1 text-sm text-muted dark:text-white/60">
-
-                    {pillar.description}
-
-                  </p>
-
+            <dl className="mt-10 divide-y divide-line border-y border-line">
+              {workforcePillars.map((p) => (
+                <div key={p.title} className="grid gap-1 py-5 sm:grid-cols-[8rem_1fr] sm:gap-6">
+                  <dt className="font-display text-xl font-semibold tracking-tight text-ink">{p.title}</dt>
+                  <dd className="text-[0.97rem] leading-relaxed text-body">{p.description}</dd>
                 </div>
-
               ))}
-
-            </div>
-
+            </dl>
           </div>
 
-
-
-          <WorkforceNetwork />
-
+          <div className="rounded-2xl border border-line bg-surface p-3 shadow-[0_24px_50px_-30px_rgba(10,15,36,0.3)] sm:p-4" role="img" aria-label="The managed workflow a contributor passes through, from recruitment to quality control">
+            <ol className="space-y-2">
+              {workforceLifecycle.map((step, i) => (
+                <li key={step} className="flex items-center gap-4 rounded-xl bg-paper px-4 py-3.5">
+                  <span className="h-3 w-3 shrink-0 rounded-[3px]" style={{ background: toneVar[tones[i % tones.length]] }} aria-hidden="true" />
+                  <span className="font-display text-lg font-semibold tracking-tight text-ink">{step}</span>
+                  <span className="ml-auto hidden h-1.5 w-24 overflow-hidden rounded-full bg-line sm:block" aria-hidden="true">
+                    <span className="block h-full rounded-full" style={{ width: `${40 + ((i * 37) % 55)}%`, background: toneVar[tones[i % tones.length]] }} />
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
-
-      </Section>
-
-
-
-      {/* QUALITY */}
-
-      <Section
-
-        id="quality"
-
-        className="border-t border-border bg-soft dark:border-white/10 dark:bg-white/[0.02]"
-
-      >
-
-        <SectionHeader
-
-          label="Quality"
-
-          heading="Quality is built into every workflow."
-
-          description="The value of AI data depends on its accuracy. Dense AI builds quality control into each stage of the workflow."
-
-        />
-
-
-
-        <div className="mt-12 grid gap-4 sm:grid-cols-5">
-
-          {qualitySteps.map((step) => (
-
-            <div
-
-              key={step.number}
-
-              className="rounded-xl border border-border bg-white p-4 text-center dark:border-white/10 dark:bg-ink"
-
-            >
-
-              <span className="text-xs font-medium text-blue">
-
-                {step.number}
-
-              </span>
-
-
-
-              <p className="mt-1.5 text-sm font-medium text-ink dark:text-white">
-
-                {step.title}
-
-              </p>
-
-            </div>
-
-          ))}
-
-        </div>
-
-
-
-        <div className="mt-6 grid gap-5 sm:grid-cols-3">
-
-          {qualityCards.map((card) => (
-
-            <div
-
-              key={card.title}
-
-              className="rounded-2xl border border-border bg-white p-6 dark:border-white/10 dark:bg-ink"
-
-            >
-
-              <h3 className="text-base font-semibold text-ink dark:text-white">
-
-                {card.title}
-
-              </h3>
-
-
-
-              <p className="mt-2 text-sm leading-relaxed text-muted dark:text-white/60">
-
-                {card.description}
-
-              </p>
-
-            </div>
-
-          ))}
-
-        </div>
-
-      </Section>
-
-
-
-      {/* RESPONSIBLE DATA OPERATIONS */}
-
-      <Section className="border-t border-border dark:border-white/10">
-
-        <SectionHeader
-
-          heading="Security designed around the project."
-
-          description="Project-specific access, handling, monitoring and delivery requirements can be incorporated into the workflow."
-
-        />
-
-
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-
-          {securityCards.map((card, index) => {
-
-            const Icon = securityIcons[index];
-
-
-
-            return (
-
-              <div
-
-                key={card.title}
-
-                className="rounded-2xl border border-border bg-white p-6 dark:border-white/10 dark:bg-ink"
-
-              >
-
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-soft text-violet dark:bg-white/5">
-
-                  <Icon size={20} strokeWidth={1.75} />
-
-                </div>
-
-
-
-                <h3 className="mt-4 text-base font-semibold text-ink dark:text-white">
-
-                  {card.title}
-
-                </h3>
-
-
-
-                <p className="mt-2 text-sm leading-relaxed text-muted dark:text-white/60">
-
-                  {card.description}
-
-                </p>
-
-              </div>
-
-            );
-
-          })}
-
-        </div>
-
-      </Section>
-
-
-
-      {/* PILOT TO SCALE */}
-
-      <Section className="border-t border-border bg-soft dark:border-white/10 dark:bg-white/[0.02]">
-
-        <SectionHeader heading="From pilot to production." />
-
-
-
-        <div className="mt-14 grid gap-6 md:grid-cols-4">
-
-          {pilotSteps.map((step, index) => (
-
-            <div key={step.number} className="relative">
-
-              <div className="rounded-2xl border border-border bg-white p-6 dark:border-white/10 dark:bg-ink">
-
-                <span className="text-xs font-medium text-blue">
-
-                  {step.number}
-
-                </span>
-
-
-
-                <h3 className="mt-2 text-base font-semibold text-ink dark:text-white">
-
-                  {step.title}
-
-                </h3>
-
-
-
-                <p className="mt-1.5 text-sm leading-relaxed text-muted dark:text-white/60">
-
-                  {step.description}
-
-                </p>
-
-              </div>
-
-
-
-              {index < pilotSteps.length - 1 && (
-
-                <ArrowRight
-
-                  size={16}
-
-                  className="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-border dark:text-white/10 md:block"
-
+      </section>
+
+      {/* QUALITY (the one dark band) */}
+      <section id="quality" className="band bg-navy text-white">
+        <div className="wrap">
+          <div className="max-w-3xl">
+            <h2 className="display-2 !text-white">Quality is built into every workflow.</h2>
+            <p className="mt-6 max-w-xl text-[1.1rem] leading-relaxed text-white/70">
+              The value of AI data depends on its accuracy. Dense AI builds quality control into each stage of the workflow.
+            </p>
+          </div>
+
+          <ol className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-5">
+            {qualitySteps.map((s, i) => (
+              <li key={s.number} className="bg-navy p-6">
+                <span className="font-mono text-xs text-white/50">{s.number}</span>
+                <p className="mt-6 font-display text-xl font-semibold leading-tight tracking-tight text-white">{s.title}</p>
+                <span
+                  className="mt-6 block h-1 rounded-full"
+                  style={{ background: i === qualitySteps.length - 1 ? "var(--mint)" : "rgba(255,255,255,0.18)", width: `${28 + i * 18}%` }}
+                  aria-hidden="true"
                 />
+              </li>
+            ))}
+          </ol>
 
-              )}
-
-            </div>
-
-          ))}
-
+          <div className="mt-16 grid gap-10 md:grid-cols-3">
+            {qualityCards.map((c) => (
+              <div key={c.title} className="border-t border-white/20 pt-6">
+                <h3 className="font-display text-xl font-semibold tracking-tight text-white">{c.title}</h3>
+                <p className="mt-3 text-[0.97rem] leading-relaxed text-white/65">{c.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
 
-      </Section>
-
-
-
-      {/* WHY DENSE AI */}
-
-      <Section className="border-t border-border dark:border-white/10">
-
-        <SectionHeader heading="Why Dense AI?" />
-
-
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-
-          {whyPillars.map((pillar) => (
-
-            <div
-
-              key={pillar.title}
-
-              className="rounded-2xl border border-border bg-white p-6 dark:border-white/10 dark:bg-ink"
-
-            >
-
-              <h3 className="text-base font-semibold text-ink dark:text-white">
-
-                {pillar.title}
-
-              </h3>
-
-
-
-              <p className="mt-2 text-sm leading-relaxed text-muted dark:text-white/60">
-
-                {pillar.description}
-
-              </p>
-
-            </div>
-
-          ))}
-
+      {/* SECURITY */}
+      <section className="band">
+        <div className="wrap">
+          <div className="max-w-3xl">
+            <h2 className="display-2">Security designed around the project.</h2>
+            <p className="lede mt-6">Project-specific access, handling, monitoring and delivery requirements can be incorporated into the workflow.</p>
+          </div>
+          <ul className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+            {securityCards.map((c, i) => {
+              const Icon = securityIcons[i % securityIcons.length];
+              return (
+                <li key={c.title} className="bg-paper p-7 transition-colors duration-200 hover:bg-surface">
+                  <Icon size={24} strokeWidth={1.6} className="text-ink" aria-hidden="true" />
+                  <h3 className="display-3 mt-8 !text-[1.25rem]">{c.title}</h3>
+                  <p className="mt-2 text-[0.95rem] leading-relaxed text-body">{c.description}</p>
+                </li>
+              );
+            })}
+          </ul>
         </div>
+      </section>
 
-      </Section>
-
-
+      {/* WHY */}
+      <section className="band border-t border-line bg-surface">
+        <div className="wrap grid gap-12 lg:grid-cols-[0.6fr_1.4fr] lg:gap-20">
+          <h2 className="display-2">Why Dense AI?</h2>
+          <dl className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
+            {whyPillars.map((p, i) => (
+              <div key={p.title} className="border-t border-ink pt-5">
+                <dt className="flex items-center gap-3 font-display text-2xl font-semibold tracking-tight text-ink">
+                  <span className="h-3 w-3 rounded-[3px]" style={{ background: toneVar[tones[i % tones.length]] }} aria-hidden="true" />
+                  {p.title}
+                </dt>
+                <dd className="mt-3 text-[0.97rem] leading-relaxed text-body">{p.description}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
 
       {/* FOUNDERS */}
-
-      <Section
-
-        id="founders"
-
-        className="border-t border-border bg-soft dark:border-white/10 dark:bg-white/[0.02]"
-
-      >
-
-        <SectionHeader
-
-          label="Our founders"
-
-          heading="Leadership across technology, operations and business."
-
-        />
-
-
-
-        <div className="mt-12 space-y-4">
-
-          {founders.map((f) => (
-
-            <div
-
-              key={f.name}
-
-              className="flex flex-col gap-5 rounded-2xl border border-border bg-white p-4 dark:border-white/10 dark:bg-ink sm:flex-row sm:items-center"
-
-            >
-
-              <Image
-
-                src={f.image}
-
-                alt={`Photo of ${f.name}`}
-
-                width={72}
-
-                height={72}
-
-                className="h-[72px] w-[72px] shrink-0 rounded-xl object-cover"
-
-              />
-
-
-
-              <div className="min-w-0 flex-1">
-
-                <h2 className="font-semibold text-ink dark:text-white">
-
-                  {f.name}
-
-                </h2>
-
-
-
-                <p className="mt-1 text-sm font-medium text-blue">
-
-                  {f.role}
-
-                </p>
-
-
-
-                <p className="mt-1 text-sm text-muted dark:text-white/60">
-
-                  {f.focus}
-
-                </p>
-
-              </div>
-
-
-
-              <a
-
-                href={
-
-                  f.name === "Anikesh Aman"
-
-                    ? "https://www.linkedin.com/in/anikesh-aman-527404210/"
-
-                    : f.name === "Arpita"
-
-                      ? "https://www.linkedin.com/in/arpita-dwivedi-5a21213a5"
-
-                      : "https://www.linkedin.com/in/dishaprajapat"
-
-                }
-
-                target="_blank"
-
-                rel="noopener noreferrer"
-
-                className="inline-flex shrink-0 items-center justify-center rounded-full border border-blue/30 px-4 py-2 text-sm font-medium text-blue transition-colors hover:border-blue hover:bg-blue/5 focus-ring"
-
-              >
-
-                LinkedIn ↗
-
-              </a>
-
-            </div>
-
-          ))}
-
+      <section id="founders" className="band border-t border-line">
+        <div className="wrap">
+          <h2 className="display-2 max-w-3xl">Leadership across technology, operations and business.</h2>
+          <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:max-w-4xl lg:gap-14">
+            {founders.map((f, i) => (
+              <article key={f.name} className={i % 2 ? "sm:mt-16" : ""}>
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-soft">
+                  <Image src={f.image} alt={`Portrait of ${f.name}`} fill sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 90vw" className="object-cover" />
+                </div>
+                <h3 className="display-3 mt-5">{f.name}</h3>
+                <p className="mt-1 text-[0.97rem] font-semibold text-blue">{f.role}</p>
+                <p className="mt-1 text-[0.95rem] text-body">{f.focus}</p>
+                {linkedin[f.name] && (
+                  <a href={linkedin[f.name]} target="_blank" rel="noopener noreferrer" className="link-u mt-3 inline-block text-[0.92rem] font-semibold text-ink">
+                    LinkedIn <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </article>
+            ))}
+          </div>
         </div>
-
-      </Section>
-
-
+      </section>
 
       {/* FAQ */}
-
-      <Section id="faq" className="border-t border-border dark:border-white/10">
-
-        <SectionHeader
-
-          heading="Frequently asked questions"
-
-          align="center"
-
-        />
-
-
-
-        <div className="mx-auto mt-12 max-w-3xl">
-
-          <Faq />
-
-        </div>
-
-      </Section>
-
-
-
-      {/* CONTACT / INTAKE */}
-
-      <Section
-
-        id="contact"
-
-        className="border-t border-border bg-soft dark:border-white/10 dark:bg-white/[0.02]"
-
-      >
-
-        <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-
+      <section id="faq" className="band border-t border-line bg-surface">
+        <div className="wrap grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
           <div>
-
-            <p className="text-xs font-medium uppercase tracking-[0.14em] text-blue">
-
-              Contact
-
-            </p>
-
-
-
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink dark:text-white sm:text-4xl">
-
-              Tell us what your AI team needs.
-
-            </h2>
-
-
-
-            <p className="mt-4 text-base leading-relaxed text-muted dark:text-white/60">
-
-              Share your data type, volume, languages, timeline and quality
-
-              requirements. We can shape the workflow around the project.
-
-            </p>
-
-
-
-            <a
-
-              href={`mailto:${site.email}`}
-
-              className="mt-6 inline-flex items-center gap-2 text-base font-medium text-blue focus-ring"
-
-            >
-
-              {site.email} <ArrowRight size={16} />
-
-            </a>
-
+            <h2 className="display-2">Frequently asked questions.</h2>
+            <p className="lede mt-5">Not listed here? Ask the assistant, or talk to the team.</p>
+            <AskAssistant className="btn btn-line mt-7" />
           </div>
+          <Faq />
+        </div>
+      </section>
 
-
-
+      {/* CONTACT */}
+      <section id="contact" className="band border-t border-line">
+        <div className="wrap grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+          <div>
+            <h2 className="display-2">Tell us what your AI team needs.</h2>
+            <p className="lede mt-6">
+              Share your data type, volume, languages, timeline and quality requirements. We can shape the workflow around the project.
+            </p>
+            <a href={`mailto:${site.email}`} className="link-u mt-8 inline-flex items-center gap-2 text-lg font-semibold text-blue">
+              {site.email} <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+          </div>
           <ProjectForm />
-
         </div>
+      </section>
 
-      </Section>
-
-
-
-      {/* CAREERS / CONTRIBUTORS */}
-
-      <Section className="border-t border-border dark:border-white/10">
-
-        <div className="rounded-3xl border border-border bg-ink px-8 py-14 text-center dark:border-white/10 lg:px-16">
-
-          <h2 className="text-2xl font-semibold text-white sm:text-3xl">
-
-            Join the Dense AI contributor network.
-
-          </h2>
-
-
-
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/70 lg:text-base">
-
-            Contributors may participate in appropriate data collection,
-
-            annotation, evaluation, language and research or feedback tasks.
-
-          </p>
-
-
-
-          <a
-
-            href={site.contributorWhatsApp}
-
-            target="_blank"
-
-            rel="noopener noreferrer"
-
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue via-violet to-cyan px-6 py-3.5 text-sm font-medium text-white transition-transform hover:scale-[1.02] focus-ring"
-
-          >
-
-            Become a Contributor <ArrowRight size={16} />
-
-          </a>
-
+      {/* CONTRIBUTORS */}
+      <section className="wrap pb-20 lg:pb-28">
+        <div className="relative overflow-hidden rounded-3xl bg-blue px-7 py-14 text-white sm:px-14 sm:py-20">
+          <div className="relative max-w-2xl">
+            <h2 className="display-2 !text-white">Join the Dense AI contributor network.</h2>
+            <p className="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-white/85">
+              Contributors may participate in appropriate data collection, annotation, evaluation, language and research or feedback tasks.
+            </p>
+            <a href={site.contributorWhatsApp} target="_blank" rel="noopener noreferrer" className="btn btn-light mt-8">
+              Become a contributor <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+          </div>
+          <div className="pointer-events-none absolute -bottom-24 -right-16 hidden h-80 w-80 rounded-[3rem] bg-[#6B3DF5] opacity-80 sm:block" aria-hidden="true" />
+          <div className="pointer-events-none absolute -bottom-10 right-40 hidden h-44 w-44 rounded-full bg-coral sm:block" aria-hidden="true" />
         </div>
-
-      </Section>
-
+      </section>
     </div>
-
   );
-
-}
-
-
-
-function InfoChip({
-
-  label,
-
-  value,
-
-}: {
-
-  label: string;
-
-  value: string;
-
-}) {
-
-  return (
-
-    <div className="flex min-h-[78px] flex-col justify-center rounded-xl border border-border bg-soft px-2.5 py-2.5 text-left dark:border-white/10 dark:bg-white/5 sm:min-h-[92px] sm:px-4">
-
-      <p className="text-[10px] font-medium uppercase tracking-wider text-muted dark:text-white/50">
-
-        {label}
-
-      </p>
-
-
-
-      <p className="mt-1 text-[13px] font-semibold leading-tight text-ink dark:text-white sm:text-base">
-
-        {value}
-
-      </p>
-
-    </div>
-
-  );
-
-}
-
-
-
-function WorkforceNetwork() {
-
-  const nodes = [
-
-    { top: "8%", left: "18%" },
-
-    { top: "12%", left: "72%" },
-
-    { top: "42%", left: "6%" },
-
-    { top: "38%", left: "88%" },
-
-    { top: "72%", left: "16%" },
-
-    { top: "78%", left: "78%" },
-
-  ];
-
-
-
-  return (
-
-    <div className="relative overflow-hidden rounded-3xl border border-border bg-white p-8 dark:border-white/10 dark:bg-ink">
-
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-50 dark:opacity-20" />
-
-
-
-      <div className="relative mx-auto flex h-72 max-w-sm items-center justify-center">
-
-        {nodes.map((pos, i) => (
-
-          <span
-
-            key={i}
-
-            className="absolute h-3 w-3 rounded-full bg-cyan animate-node-pulse"
-
-            style={{
-
-              top: pos.top,
-
-              left: pos.left,
-
-              animationDelay: `${i * 0.3}s`,
-
-            }}
-
-          />
-
-        ))}
-
-
-
-        <div className="relative z-10 flex flex-col items-center justify-center rounded-2xl border border-border bg-soft px-6 py-5 text-center shadow-sm dark:border-white/10 dark:bg-white/5">
-
-          <p className="text-xs font-semibold uppercase tracking-wider text-ink dark:text-white">
-
-            Dense AI
-
-          </p>
-
-
-
-          <p className="text-[11px] text-muted dark:text-white/50">
-
-            Project management
-
-          </p>
-
-        </div>
-
-      </div>
-
-
-
-      <div className="relative mt-6 flex items-center justify-center gap-2 text-xs font-medium uppercase tracking-wider text-muted dark:text-white/50">
-
-        <span>Quality control</span>
-
-        <ArrowRight size={14} />
-
-        <span>Final dataset</span>
-
-      </div>
-
-    </div>
-
-  );
-
 }

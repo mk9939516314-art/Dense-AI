@@ -1,7 +1,40 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Section, SectionHeader } from "@/components/section";
+import { PageHead, RowList, Section } from "@/components/section";
 import { workforcePillars } from "@/lib/config";
+
 export const metadata: Metadata = { title: "Workforce — Dense AI", description: "Project-specific contributor qualification, training and managed human workflows from Dense AI." };
-export default function WorkforcePage() { return <Section><SectionHeader label="Workforce" heading="A managed human layer for AI data work." description="Workforce requirements can be shaped around skills, languages, qualification criteria and project-specific instructions." /><div className="mt-12 grid gap-5 md:grid-cols-3">{workforcePillars.map((item) => <div key={item.title} className="rounded-2xl border border-border bg-white p-7 dark:border-white/10 dark:bg-ink"><h2 className="text-lg font-semibold text-ink dark:text-white">{item.title}</h2><p className="mt-2 text-sm leading-relaxed text-muted dark:text-white/60">{item.description}</p></div>)}</div><div className="mt-10 rounded-3xl border border-border bg-soft p-8 dark:border-white/10 dark:bg-white/[0.03]"><h2 className="text-2xl font-semibold text-ink dark:text-white">From qualification to delivery</h2><p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted dark:text-white/60">Projects can use defined instructions, training, task allocation, progress monitoring and quality checks before final delivery.</p><Link href="/contact" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-blue focus-ring">Discuss workforce requirements <ArrowRight size={16}/></Link></div></Section> }
+
+const lifecycle = ["Recruitment", "Qualification", "Training", "Task allocation", "Monitoring", "Quality control"];
+
+export default function WorkforcePage() {
+  return (
+    <>
+      <PageHead
+        title="A managed human layer for AI data work."
+        description="Workforce requirements can be shaped around skills, languages, qualification criteria and project-specific instructions."
+      />
+      <Section>
+        <RowList items={workforcePillars} />
+      </Section>
+      <section className="border-t border-line bg-soft">
+        <div className="wrap py-16 lg:py-20">
+          <h2 className="display-3 max-w-xl">From qualification to delivery</h2>
+          <p className="lede mt-4">Projects can use defined instructions, training, task allocation, progress monitoring and quality checks before final delivery.</p>
+          <ol className="mt-10 grid gap-px overflow-hidden rounded-[10px] border border-line bg-line sm:grid-cols-3 lg:grid-cols-6">
+            {lifecycle.map((l, i) => (
+              <li key={l} className="bg-paper px-5 py-6">
+                <span className="font-mono text-[0.78rem] text-muted">{i + 1}</span>
+                <p className="mt-6 font-display text-[1.05rem] font-semibold text-ink">{l}</p>
+              </li>
+            ))}
+          </ol>
+          <Link href="/contact" className="btn btn-ink mt-10 w-fit">
+            Discuss workforce requirements <ArrowRight size={17} aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}

@@ -79,14 +79,14 @@ export default function PrivacyPage() {
       <LegalSection heading="Contact us">
         <p>
           Questions about this policy or your information can be sent to{" "}
-          <a href={`mailto:${site.email}`} className="font-medium text-blue focus-ring">
+          <a href={`mailto:${site.email}`} className="font-medium text-blue">
             {site.email}
           </a>
           .
         </p>
       </LegalSection>
 
-      <p className="border-t border-border pt-6 text-xs text-muted dark:border-white/10 dark:text-white/50">
+      <p className="border-t border-line pt-6 text-xs text-muted">
         This page is a general-purpose starting draft and is not legal advice. Consider having it reviewed by
         a qualified lawyer for your jurisdiction and specific data practices before relying on it.
       </p>

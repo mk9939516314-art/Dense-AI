@@ -165,17 +165,17 @@ ${form.description}`
   if (status === "sent") {
     return (
       <div
-        className="rounded-2xl border border-border bg-white p-10 text-center dark:border-white/10 dark:bg-ink"
+        className="rounded-2xl border border-line bg-surface p-10 text-center"
         role="status"
         aria-live="polite"
       >
-        <CheckCircle2 className="mx-auto text-blue" size={36} />
+        <CheckCircle2 className="mx-auto text-mint" size={40} aria-hidden="true" />
 
-        <h3 className="mt-4 text-lg font-semibold text-ink dark:text-white">
+        <h3 className="display-3 mt-4">
           Project inquiry submitted
         </h3>
 
-        <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-muted dark:text-white/60">
+        <p className="mx-auto mt-3 max-w-sm text-[0.97rem] leading-relaxed text-body">
           Thanks. Your details were submitted successfully. We&apos;ll follow
           up using the contact information you provided.
         </p>
@@ -186,7 +186,7 @@ ${form.description}`
             setStatus("idle");
             setForm(initialState);
           }}
-          className="mt-5 text-sm font-medium text-blue focus-ring"
+          className="link-u mt-6 text-[0.95rem] font-semibold text-blue"
         >
           Submit another project
         </button>
@@ -198,10 +198,10 @@ ${form.description}`
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-2xl border border-border bg-white p-6 sm:p-8 dark:border-white/10 dark:bg-ink"
+      className="relative rounded-2xl border border-line bg-surface p-6 shadow-[0_24px_50px_-34px_rgba(10,15,36,0.35)] sm:p-9"
       aria-describedby={status === "error" ? "form-error" : undefined}
     >
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-x-5 gap-y-6 sm:grid-cols-2">
         <Field label="Name" htmlFor="name" error={errors.name} required>
           <input
             id="name"
@@ -346,7 +346,7 @@ ${form.description}`
             name="volume"
             maxLength={100}
             className={inputClass()}
-            placeholder="e.g. 10,000 items"
+            placeholder="e.g. 10,000 items…"
             value={form.volume}
             onChange={(e) => update("volume", e.target.value)}
           />
@@ -358,7 +358,7 @@ ${form.description}`
             name="languages"
             maxLength={200}
             className={inputClass()}
-            placeholder="e.g. English, Hindi"
+            placeholder="e.g. English, Hindi…"
             value={form.languages}
             onChange={(e) => update("languages", e.target.value)}
           />
@@ -370,7 +370,7 @@ ${form.description}`
             name="timeline"
             maxLength={100}
             className={inputClass()}
-            placeholder="e.g. Pilot in 4 weeks"
+            placeholder="e.g. Pilot in 4 weeks…"
             value={form.timeline}
             onChange={(e) => update("timeline", e.target.value)}
           />
@@ -390,7 +390,7 @@ ${form.description}`
             required
             maxLength={5000}
             className={inputClass(errors.description)}
-            placeholder="Tell us about the task, quality requirements and expected deliverable."
+            placeholder="Tell us about the task, quality requirements and expected deliverable…"
             value={form.description}
             onChange={(e) => update("description", e.target.value)}
             aria-invalid={!!errors.description}
@@ -420,7 +420,7 @@ ${form.description}`
       {status === "error" && (
         <div
           id="form-error"
-          className="mt-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-200"
+          className="mt-5 rounded-xl border border-[#F3B7C0] bg-[#FFF1F3] p-4 text-sm text-[#8F1D33]"
           role="alert"
         >
           <div className="flex gap-3">
@@ -435,7 +435,7 @@ ${form.description}`
 
               <a
                 href={mailtoHref()}
-                className="mt-2 inline-flex items-center gap-1.5 font-medium underline focus-ring"
+                className="mt-2 inline-flex items-center gap-1.5 font-medium underline"
               >
                 <Mail size={14} />
                 Email {site.email} directly
@@ -448,7 +448,7 @@ ${form.description}`
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue via-violet to-cyan px-6 py-3.5 text-sm font-medium text-white transition-transform hover:scale-[1.01] focus-ring disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+        className="btn btn-ink mt-7 w-full disabled:cursor-wait disabled:opacity-70 sm:w-auto"
       >
         {status === "sending" && (
           <Loader2
@@ -463,7 +463,7 @@ ${form.description}`
           : "Send project details"}
       </button>
 
-      <p className="mt-3 text-xs leading-relaxed text-muted dark:text-white/50">
+      <p className="mt-4 text-[0.82rem] leading-relaxed text-muted">
         Please do not include passwords, secrets or highly sensitive personal
         information in this form.
       </p>
@@ -492,7 +492,7 @@ function Field({
     <div className={`block ${full ? "sm:col-span-2" : ""}`}>
       <label
         htmlFor={htmlFor}
-        className="text-sm font-medium text-ink dark:text-white"
+        className="text-[0.9rem] font-semibold text-ink"
       >
         {label}
         {required && (
@@ -500,12 +500,12 @@ function Field({
         )}
       </label>
 
-      <div className="mt-1.5">{children}</div>
+      <div className="mt-2">{children}</div>
 
       {error && (
         <p
           id={errorId}
-          className="mt-1 block text-xs text-red-600 dark:text-red-300"
+          className="mt-1.5 block text-[0.82rem] font-medium text-[#C2223F]"
           role="alert"
         >
           {error}
@@ -516,9 +516,5 @@ function Field({
 }
 
 function inputClass(error?: string) {
-  return `w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition-colors focus-ring dark:bg-navy dark:text-white ${
-    error
-      ? "border-red-400"
-      : "border-border dark:border-white/10"
-  }`;
+  return `field ${error ? "!border-[#E0405C] focus:!shadow-[0_0_0_3px_rgba(224,64,92,0.18)]" : ""}`;
 }
