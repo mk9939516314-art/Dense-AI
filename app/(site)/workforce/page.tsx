@@ -18,19 +18,19 @@ export default function WorkforcePage() {
       <Section>
         <RowList items={workforcePillars} />
       </Section>
-      <section className="border-t border-line bg-soft">
-        <div className="wrap py-16 lg:py-20">
-          <h2 className="display-3 max-w-xl">From qualification to delivery</h2>
-          <p className="lede mt-4">Projects can use defined instructions, training, task allocation, progress monitoring and quality checks before final delivery.</p>
-          <ol className="mt-10 grid gap-px overflow-hidden rounded-[10px] border border-line bg-line sm:grid-cols-3 lg:grid-cols-6">
+      <section className="border-t border-[var(--line)]">
+        <div className="wrap2 py-16 lg:py-20">
+          <h2 className="h-sec max-w-xl">From qualification to delivery</h2>
+          <p className="copy mt-4">Projects can use defined instructions, training, task allocation, progress monitoring and quality checks before final delivery.</p>
+          <ol className="mt-10 grid gap-px overflow-hidden rounded-[10px] border border-[var(--line)] bg-[var(--line)] sm:grid-cols-3 lg:grid-cols-6">
             {lifecycle.map((l, i) => (
-              <li key={l} className="bg-paper px-5 py-6">
-                <span className="font-mono text-[0.78rem] text-muted">{i + 1}</span>
-                <p className="mt-6 font-display text-[1.05rem] font-semibold text-ink">{l}</p>
+              <li key={l} className="bg-white/[.03] px-5 py-6">
+                <span className="font-mono text-[0.78rem] text-[var(--dim)]">{i + 1}</span>
+                <p className="mt-6 text-[1.05rem] font-semibold text-[var(--fg)]">{l}</p>
               </li>
             ))}
           </ol>
-          <Link href="/contact" className="btn btn-ink mt-10 w-fit">
+          <Link href="/contact" className="btn-lime mt-10 w-fit">
             Discuss workforce requirements <ArrowRight size={17} aria-hidden="true" />
           </Link>
         </div>

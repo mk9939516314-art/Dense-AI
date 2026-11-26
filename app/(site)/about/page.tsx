@@ -22,7 +22,7 @@ export default function AboutPage() {
       />
       <Section>
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-20">
-          <p className="text-[1.15rem] leading-relaxed text-ink">
+          <p className="text-[1.15rem] leading-relaxed text-[var(--fg)]">
             The operating model is built around project-specific requirements rather than one fixed workforce or annotation recipe.
           </p>
           <p className="text-[1.15rem] leading-relaxed text-body">
@@ -30,9 +30,9 @@ export default function AboutPage() {
           </p>
         </div>
       </Section>
-      <section id="founders" className="border-t border-line bg-soft">
-        <div className="wrap py-20 lg:py-28">
-          <h2 className="display-2 max-w-3xl">Leadership across technology, operations and business.</h2>
+      <section id="founders" className="border-t border-[var(--line)]">
+        <div className="wrap2 py-20 lg:py-28">
+          <h2 className="h-sec max-w-3xl">Leadership across technology, operations and business.</h2>
           <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {founders.map((f) => (
               <FounderCard key={f.name} {...f} href={linkedin[f.name] ?? "https://www.linkedin.com/in/dishaprajapat"} />

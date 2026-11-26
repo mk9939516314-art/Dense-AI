@@ -26,40 +26,40 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   return (
     <>
       <PageHead title={service.title} description={service.description} back={{ href: "/services", label: "All services" }}>
-        <Link href="/contact" className="btn btn-light">
+        <Link href="/contact" className="btn-lime">
           Start a project <ArrowRight size={17} aria-hidden="true" />
         </Link>
       </PageHead>
 
       <Section>
-        <h2 className="display-3 max-w-2xl">How this workflow runs</h2>
-        <ul className="mt-10 grid border-y border-line md:grid-cols-3">
+        <h2 className="h-sec max-w-2xl">How this workflow runs</h2>
+        <ul className="mt-10 grid border-y border-[var(--line)] md:grid-cols-3">
           {service.details.map((d, i) => (
-            <li key={d} className={`flex gap-4 py-8 md:px-8 ${i > 0 ? "border-t border-line md:border-l md:border-t-0" : "md:pl-0"} ${i === 2 ? "md:pr-0" : ""}`}>
+            <li key={d} className={`flex gap-4 py-8 md:px-8 ${i > 0 ? "border-t border-[var(--line)] md:border-l md:border-t-0" : "md:pl-0"} ${i === 2 ? "md:pr-0" : ""}`}>
               <span className="mt-[0.5rem] h-3 w-3 shrink-0 rounded-[3px]" style={{ background: tones[(idx + i) % tones.length] }} aria-hidden="true" />
-              <p className="text-[1.02rem] leading-relaxed text-ink">{d}</p>
+              <p className="text-[1.02rem] leading-relaxed text-[var(--fg)]">{d}</p>
             </li>
           ))}
         </ul>
       </Section>
 
-      <section className="border-t border-line bg-soft">
-        <div className="wrap grid gap-10 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:py-20">
+      <section className="border-t border-[var(--line)]">
+        <div className="wrap2 grid gap-10 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:py-20">
           <div>
-            <h2 className="display-3">Have a project in mind?</h2>
-            <p className="lede mt-5">Share your requirements and Dense AI can discuss the workflow, qualification and quality controls appropriate to the project.</p>
-            <Link href="/contact" className="btn btn-ink mt-8 w-fit">
+            <h2 className="h-sec">Have a project in mind?</h2>
+            <p className="copy mt-5">Share your requirements and Dense AI can discuss the workflow, qualification and quality controls appropriate to the project.</p>
+            <Link href="/contact" className="btn-lime mt-8 w-fit">
               Start a project <ArrowRight size={17} aria-hidden="true" />
             </Link>
           </div>
           <div>
-            <p className="mb-3 text-[0.95rem] font-semibold text-ink">Other services</p>
-            <ul className="border-b border-line">
+            <p className="mb-3 text-[0.95rem] font-semibold text-[var(--fg)]">Other services</p>
+            <ul className="border-b border-[var(--line)]">
               {others.map((o) => (
-                <li key={o.slug} className="border-t border-line">
-                  <Link href={`/services/${o.slug}`} className="row-link flex items-center justify-between gap-4 py-4 text-[1.02rem] font-medium text-ink">
+                <li key={o.slug} className="border-t border-[var(--line)]">
+                  <Link href={`/services/${o.slug}`} className="row-link flex items-center justify-between gap-4 py-4 text-[1.02rem] font-medium text-[var(--fg)]">
                     {o.title}
-                    <ArrowRight size={16} aria-hidden="true" className="text-muted" />
+                    <ArrowRight size={16} aria-hidden="true" className="text-[var(--dim)]" />
                   </Link>
                 </li>
               ))}

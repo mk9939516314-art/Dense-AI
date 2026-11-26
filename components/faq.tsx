@@ -8,11 +8,11 @@ export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="border-b border-line">
+    <div className="glass divide-y divide-[var(--line)] overflow-hidden !rounded-[22px]">
       {faqs.map((item, index) => {
         const isOpen = openIndex === index;
         return (
-          <div key={item.question} className="border-t border-line">
+          <div key={item.question}>
             <h3>
               <button
                 type="button"
@@ -20,12 +20,12 @@ export function Faq() {
                 aria-expanded={isOpen}
                 aria-controls={`faq-panel-${index}`}
                 id={`faq-button-${index}`}
-                className="group flex w-full items-center justify-between gap-6 py-6 text-left"
+                className="group flex w-full items-center justify-between gap-6 px-6 py-6 text-left sm:px-8"
               >
-                <span className="font-display text-[1.2rem] font-semibold leading-snug tracking-tight text-ink sm:text-[1.35rem]">
+                <span className="text-[1.05rem] font-medium leading-snug tracking-[-0.01em] text-[var(--fg)] sm:text-[1.15rem]">
                   {item.question}
                 </span>
-                <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color,color] duration-300 ease-out ${isOpen ? "rotate-45 border-ink bg-ink text-white" : "border-line text-ink group-hover:border-ink"}`}>
+                <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color,color] duration-300 ease-out ${isOpen ? "rotate-45 border-[var(--lime)] bg-[var(--lime)] text-[#0b0f02]" : "border-[var(--line)] text-[var(--fg)] group-hover:border-[var(--lime)]"}`}>
                   <Plus size={18} aria-hidden="true" />
                 </span>
               </button>
@@ -37,7 +37,7 @@ export function Faq() {
               className={`grid transition-[grid-template-rows] duration-300 ease-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
             >
               <div className="overflow-hidden">
-                <p className="max-w-2xl pb-7 text-[1rem] leading-relaxed text-body">{item.answer}</p>
+                <p className="max-w-2xl px-6 pb-7 text-[1rem] leading-relaxed text-[var(--mute)] sm:px-8">{item.answer}</p>
               </div>
             </div>
           </div>

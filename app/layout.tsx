@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import AssistantLoader from "@/components/assistant/loader";
 
 const display = localFont({
   src: "./fonts/bricolage.woff2",
@@ -15,6 +12,13 @@ const sans = localFont({
   src: "./fonts/geist.woff2",
   variable: "--font-sans",
   weight: "100 900",
+  display: "swap",
+});
+const serif = localFont({
+  src: "./fonts/instrument-serif-italic.woff2",
+  variable: "--font-serif",
+  weight: "400",
+  style: "italic",
   display: "swap",
 });
 const mono = localFont({
@@ -48,8 +52,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F4F6FA",
-  colorScheme: "light",
+  themeColor: "#020001",
   width: "device-width",
   initialScale: 1,
 };
@@ -65,14 +68,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   };
 
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable} ${serif.variable}`}>
       <body className="font-sans antialiased">
-        <a href="#main-content" className="skip-link">Skip to content</a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
-        <Navbar />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <AssistantLoader />
+        {children}
       </body>
     </html>
   );

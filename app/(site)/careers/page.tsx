@@ -9,10 +9,10 @@ export const metadata: Metadata = { title: "Careers — Dense AI", description: 
 export default function CareersPage() {
   return (
     <PageHead title="Build the human layer for AI." description="For team opportunities, share your background and the kind of work you want to contribute to.">
-      <a href={`mailto:${site.email}`} className="btn btn-light">
+      <a href={`mailto:${site.email}`} className="btn-lime">
         Email Dense AI <ArrowRight size={17} aria-hidden="true" />
       </a>
-      <Link href="/" className="link-u w-fit text-[0.97rem] font-semibold text-white">
+      <Link href="/" className="btn-ghost">
         Back home
       </Link>
     </PageHead>

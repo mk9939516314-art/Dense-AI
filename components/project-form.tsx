@@ -165,17 +165,17 @@ ${form.description}`
   if (status === "sent") {
     return (
       <div
-        className="rounded-2xl border border-line bg-surface p-10 text-center"
+        className="glass p-10 text-center"
         role="status"
         aria-live="polite"
       >
-        <CheckCircle2 className="mx-auto text-mint" size={40} aria-hidden="true" />
+        <CheckCircle2 className="mx-auto text-[var(--lime)]" size={40} aria-hidden="true" />
 
-        <h3 className="display-3 mt-4">
+        <h3 className="mt-4 text-[1.6rem] font-semibold tracking-tight">
           Project inquiry submitted
         </h3>
 
-        <p className="mx-auto mt-3 max-w-sm text-[0.97rem] leading-relaxed text-body">
+        <p className="mx-auto mt-3 max-w-sm text-[0.97rem] leading-relaxed text-[var(--mute)]">
           Thanks. Your details were submitted successfully. We&apos;ll follow
           up using the contact information you provided.
         </p>
@@ -186,7 +186,7 @@ ${form.description}`
             setStatus("idle");
             setForm(initialState);
           }}
-          className="link-u mt-6 text-[0.95rem] font-semibold text-blue"
+          className="mt-6 text-[0.95rem] font-semibold text-[var(--lime)] underline underline-offset-4"
         >
           Submit another project
         </button>
@@ -198,7 +198,7 @@ ${form.description}`
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="relative rounded-2xl border border-line bg-surface p-6 shadow-[0_24px_50px_-34px_rgba(10,15,36,0.35)] sm:p-9"
+      className="glass relative p-6 sm:p-9"
       aria-describedby={status === "error" ? "form-error" : undefined}
     >
       <div className="grid gap-x-5 gap-y-6 sm:grid-cols-2">
@@ -420,7 +420,7 @@ ${form.description}`
       {status === "error" && (
         <div
           id="form-error"
-          className="mt-5 rounded-xl border border-[#F3B7C0] bg-[#FFF1F3] p-4 text-sm text-[#8F1D33]"
+          className="mt-5 rounded-xl border border-[#ff8da0]/30 bg-[#ff8da0]/10 p-4 text-sm text-[#ffb3c0]"
           role="alert"
         >
           <div className="flex gap-3">
@@ -448,7 +448,7 @@ ${form.description}`
       <button
         type="submit"
         disabled={status === "sending"}
-        className="btn btn-ink mt-7 w-full disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+        className="btn-lime mt-7 w-full disabled:cursor-wait disabled:opacity-70 sm:w-auto"
       >
         {status === "sending" && (
           <Loader2
@@ -463,7 +463,7 @@ ${form.description}`
           : "Send project details"}
       </button>
 
-      <p className="mt-4 text-[0.82rem] leading-relaxed text-muted">
+      <p className="mt-4 text-[0.82rem] leading-relaxed text-[var(--dim)]">
         Please do not include passwords, secrets or highly sensitive personal
         information in this form.
       </p>
@@ -492,7 +492,7 @@ function Field({
     <div className={`block ${full ? "sm:col-span-2" : ""}`}>
       <label
         htmlFor={htmlFor}
-        className="text-[0.9rem] font-semibold text-ink"
+        className="text-[0.9rem] font-medium text-[#d4d8cd]"
       >
         {label}
         {required && (
@@ -505,7 +505,7 @@ function Field({
       {error && (
         <p
           id={errorId}
-          className="mt-1.5 block text-[0.82rem] font-medium text-[#C2223F]"
+          className="mt-1.5 block text-[0.82rem] font-medium text-[#ff8da0]"
           role="alert"
         >
           {error}

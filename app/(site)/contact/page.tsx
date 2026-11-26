@@ -13,7 +13,7 @@ export default function ContactPage() {
         title="Tell us what your AI team needs."
         description="Share your data type, volume, languages, timeline and quality requirements. We can discuss a workflow around the project."
       >
-        <a href={`mailto:${site.email}`} className="link-u inline-flex w-fit items-center gap-1.5 text-[1.02rem] font-semibold text-white">
+        <a href={`mailto:${site.email}`} className="btn-ghost">
           {site.email} <ArrowUpRight size={16} aria-hidden="true" />
         </a>
       </PageHead>

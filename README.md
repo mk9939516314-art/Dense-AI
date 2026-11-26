@@ -28,3 +28,11 @@ See `.env.example`. Set the same values in Vercel under Project Settings, Enviro
 - Handoff storage: `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`
 - Admin: `ADMIN_USER`, `ADMIN_PASSWORD`, `ADMIN_SECRET`
 - Optional: `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_DENSE_MEET_URL` (meeting actions appear in the assistant only when this is set)
+
+
+## Design system (v2)
+
+- Dark "Relay"-style site: all public pages live in `app/(site)/` with tokens in `app/(site)/site.css`. `/admin` stays outside the group with its own light UI.
+- `components/backdrop.tsx` is the WebGL ribbon scene (three.js, bloom) that morphs with scroll. It respects `prefers-reduced-motion`.
+- Fonts are local (`app/fonts/`): Bricolage Grotesque, Geist, Geist Mono, Instrument Serif italic.
+- Design skills used during the build are in `.claude/skills/`.
