@@ -71,7 +71,7 @@ export default function HomePage() {
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {serviceDetails.map((s, i) => (
               <li key={s.slug} className="rv">
-                <Link href={`/services/${s.slug}`} className="glass group flex h-full min-h-[15rem] flex-col p-6 transition-[border-color,transform,background-color] duration-300 hover:-translate-y-1 hover:border-[rgba(191,243,70,.4)]">
+                <Link href={`/services/${s.slug}`} className="glass group flex h-full min-h-[15rem] flex-col p-6 transition-[border-color,transform,background-color] duration-300 hover:-translate-y-1 hover:border-[rgba(91,140,255,.4)]">
                   <span className="tile !h-10 !w-10 !rounded-[10px] !text-[.72rem] group-hover:on">{codes[i]}</span>
                   <h3 className="mt-6 text-[1.15rem] font-medium tracking-tight">{s.title}</h3>
                   <p className="copy-sm mt-2 !text-[.9rem]">{s.description}</p>

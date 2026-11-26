@@ -25,7 +25,7 @@ export function Faq() {
                 <span className="text-[1.05rem] font-medium leading-snug tracking-[-0.01em] text-[var(--fg)] sm:text-[1.15rem]">
                   {item.question}
                 </span>
-                <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color,color] duration-300 ease-out ${isOpen ? "rotate-45 border-[var(--lime)] bg-[var(--lime)] text-[#0b0f02]" : "border-[var(--line)] text-[var(--fg)] group-hover:border-[var(--lime)]"}`}>
+                <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color,color] duration-300 ease-out ${isOpen ? "rotate-45 border-[var(--lime)] bg-[var(--lime)] text-white" : "border-[var(--line)] text-[var(--fg)] group-hover:border-[var(--lime)]"}`}>
                   <Plus size={18} aria-hidden="true" />
                 </span>
               </button>

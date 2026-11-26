@@ -74,7 +74,7 @@ export function RunTimeline() {
             <span className="flex items-center gap-2 text-[#d4d8cd]">{r.ok ? <Check size={14} className="text-[var(--lime)]" aria-hidden="true" /> : <Clock size={14} className="text-[#8b9086]" aria-hidden="true" />}{r.l}</span>
             <span className="relative h-3">
               <span
-                className={`absolute inset-y-0 rounded-[4px] origin-left transition-transform duration-[1100ms] ease-out ${r.ok ? (i === 0 ? "bg-[var(--lime)]" : "bg-[#d9ddd0]") : "bg-[repeating-linear-gradient(90deg,#BFF346_0_2px,transparent_2px_4px)]"}`}
+                className={`absolute inset-y-0 rounded-[4px] origin-left transition-transform duration-[1100ms] ease-out ${r.ok ? (i === 0 ? "bg-[var(--lime)]" : "bg-[#d9ddd0]") : "bg-[repeating-linear-gradient(90deg,#5B8CFF_0_2px,transparent_2px_4px)]"}`}
                 style={{ left: `${r.from}%`, width: `${r.w}%`, transform: seen ? "scaleX(1)" : "scaleX(0)", transitionDelay: `${i * 140}ms` }}
               />
             </span>
@@ -145,7 +145,7 @@ export function IsoBars() {
           const cx = 70 + i * 112;
           const h = hs[i];
           const last = i === days.length - 1;
-          const [L, R, T] = last ? ["#7d9c20", "#a4c92e", "#d3ff63"] : ["url(#gl)", "url(#gr)", "#3b3c36"];
+          const [L, R, T] = last ? ["#2a49c9", "#4f7bff", "#7fe3f0"] : ["url(#gl)", "url(#gr)", "#3b3c36"];
           const pts = (arr: number[][]) => arr.map((p) => p.join(",")).join(" ");
           return (
             <g key={d}>
@@ -155,9 +155,9 @@ export function IsoBars() {
                 <polygon points={pts([[cx, yb - h - b], [cx + a, yb - h], [cx, yb - h + b], [cx - a, yb - h]])} fill={T} />
               </g>
               <g style={{ opacity: seen ? 1 : 0, transition: `opacity 600ms ${600 + i * 110}ms` }}>
-                <polygon points={pts([[cx, yb - h - b - 42], [cx + a * 0.8, yb - h - 42], [cx, yb - h + b * 0.8 - 42], [cx - a * 0.8, yb - h - 42]])} fill={last ? "rgba(191,243,70,.35)" : i === 4 ? "rgba(255,255,255,.12)" : "rgba(235,238,230,.82)"} />
+                <polygon points={pts([[cx, yb - h - b - 42], [cx + a * 0.8, yb - h - 42], [cx, yb - h + b * 0.8 - 42], [cx - a * 0.8, yb - h - 42]])} fill={last ? "rgba(91,140,255,.35)" : i === 4 ? "rgba(255,255,255,.12)" : "rgba(235,238,230,.82)"} />
               </g>
-              <text x={cx} y={yb + b + 38} textAnchor="middle" className="fill-[#666b62]" style={{ font: "12px var(--font-mono)" }} fill={last ? "#BFF346" : undefined}>{d}</text>
+              <text x={cx} y={yb + b + 38} textAnchor="middle" className="fill-[#666b62]" style={{ font: "12px var(--font-mono)" }} fill={last ? "#5B8CFF" : undefined}>{d}</text>
             </g>
           );
         })}
@@ -211,10 +211,10 @@ export function LimePanel() {
       <div className="sticky top-0 grid h-screen place-items-center overflow-hidden">
         <div ref={panel} className="lime relative grid w-full place-items-center px-6 text-center" style={{ marginInline: "9vw", borderRadius: 46, minHeight: "58vh" }}>
           <div className="max-w-[54rem] py-16">
-            <p ref={lab} className="font-mono text-[.78rem] text-[#3d4a14]">[ what we are actually delivering ]</p>
+            <p ref={lab} className="font-mono text-[.78rem] text-white/80">[ what we are actually delivering ]</p>
             <h2 className="mt-8 text-[clamp(2.1rem,4.4vw,3.9rem)] font-semibold leading-[1.1] tracking-[-0.035em]">
               <span ref={t1} className="block">The best dataset is the one</span>
-              <span ref={t2} className="serif inline-block text-[1.12em] leading-[1] text-[#4a5c12]">nobody has to</span>{" "}
+              <span ref={t2} className="serif inline-block text-[1.12em] leading-[1] text-white">nobody has to</span>{" "}
               <span ref={t3} className="inline-block">re-label.</span>
             </h2>
             <div ref={icon} className="mx-auto mt-10 grid h-[4.75rem] w-[4.75rem] place-items-center rounded-[22px] bg-[#0a0c06] shadow-[0_20px_50px_-15px_rgba(0,0,0,.5)]">
@@ -241,7 +241,7 @@ export function HubCard() {
             <line key={i} x1="200" y1="120" x2={x} y2={y} stroke="rgba(255,255,255,.12)" strokeDasharray="2 5" />
           ))}
         </svg>
-        <div className="absolute left-1/2 top-1/2 grid h-[5.5rem] w-[5.5rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[26px] bg-[var(--lime)] shadow-[0_0_70px_-8px_rgba(191,243,70,.55)]">
+        <div className="absolute left-1/2 top-1/2 grid h-[5.5rem] w-[5.5rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[26px] bg-[var(--lime)] shadow-[0_0_70px_-8px_rgba(91,140,255,.55)]">
           <Image src="/logo-mark.png" alt="" width={72} height={64} className="h-10 w-auto" />
         </div>
         {sats.map((s) => (
@@ -273,7 +273,7 @@ export function ScopeCard() {
             </div>
             <span className="relative col-span-2 h-1.5 rounded-full bg-white/[.07] sm:col-span-1">
               <span className="absolute inset-y-0 left-0 rounded-full bg-[var(--lime)] transition-[width] duration-[1200ms] ease-out" style={{ width: seen ? "100%" : "0%", transitionDelay: `${i * 160}ms`, opacity: i === 0 ? 1 : 0.55 }} />
-              <span className="absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-[var(--lime)] shadow-[0_0_14px_rgba(191,243,70,.7)] transition-[left] duration-[1200ms] ease-out" style={{ left: seen ? "calc(100% - 12px)" : "0%", transitionDelay: `${i * 160}ms` }} />
+              <span className="absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-[var(--lime)] shadow-[0_0_14px_rgba(91,140,255,.7)] transition-[left] duration-[1200ms] ease-out" style={{ left: seen ? "calc(100% - 12px)" : "0%", transitionDelay: `${i * 160}ms` }} />
             </span>
           </li>
         ))}
@@ -303,7 +303,7 @@ function DotMap() {
   }, []);
   return (
     <svg viewBox="0 0 300 150" className="mt-3 w-full" aria-hidden="true">
-      {dots.map((d, i) => <circle key={i} cx={d.x} cy={d.y} r="1.35" fill={i % 53 === 0 ? "#BFF346" : "#4a4e45"} />)}
+      {dots.map((d, i) => <circle key={i} cx={d.x} cy={d.y} r="1.35" fill={i % 53 === 0 ? "#5B8CFF" : "#4a4e45"} />)}
     </svg>
   );
 }
@@ -331,7 +331,7 @@ export function ProjectWeek() {
                 return (
                   <button key={d} type="button" tabIndex={-1} aria-hidden="true" onMouseEnter={() => setHot([di, row])}
                     className="h-[1.05rem] rounded-[4px] transition-[background-color,opacity,box-shadow] duration-300"
-                    style={{ background: on ? "#BFF346" : `rgba(255,255,255,${(0.04 + fill(di, row) * 0.12).toFixed(3)})`, boxShadow: on ? "0 0 22px rgba(191,243,70,.5)" : "none" }} />
+                    style={{ background: on ? "#5B8CFF" : `rgba(255,255,255,${(0.04 + fill(di, row) * 0.12).toFixed(3)})`, boxShadow: on ? "0 0 22px rgba(91,140,255,.5)" : "none" }} />
                 );
               })}
             </div>
@@ -345,7 +345,7 @@ export function ProjectWeek() {
         <span className="mono self-start">hands off</span>
         <svg viewBox="0 0 120 120" className="mt-3 h-36 w-36" aria-hidden="true">
           <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.09)" strokeWidth="6" />
-          <circle cx="60" cy="60" r="52" fill="none" stroke="#BFF346" strokeWidth="6" strokeLinecap="round" strokeDasharray={C} strokeDashoffset={seen ? C * 0.18 : C} transform="rotate(-90 60 60)" style={{ transition: "stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1)" }} />
+          <circle cx="60" cy="60" r="52" fill="none" stroke="#5B8CFF" strokeWidth="6" strokeLinecap="round" strokeDasharray={C} strokeDashoffset={seen ? C * 0.18 : C} transform="rotate(-90 60 60)" style={{ transition: "stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1)" }} />
           <text x="60" y="68" textAnchor="middle" fill="#EEF0EA" style={{ font: "500 26px var(--font-sans)" }}>82%</text>
         </svg>
         <p className="copy-sm mt-3">of labels accepted on the first review</p>
@@ -364,7 +364,7 @@ export function ProjectWeek() {
       <div className="glass glass-pad">
         <span className="mono">disagreements and resolutions</span>
         <svg viewBox="0 0 300 100" className="mt-4 w-full" fill="none" aria-hidden="true">
-          <path d="M0 55 C 40 5, 80 5, 110 50 S 180 95, 220 50 S 270 10, 300 40" stroke="#BFF346" strokeWidth="2.2" strokeDasharray="520" strokeDashoffset={seen ? 0 : 520} style={{ transition: "stroke-dashoffset 2s ease-out" }} />
+          <path d="M0 55 C 40 5, 80 5, 110 50 S 180 95, 220 50 S 270 10, 300 40" stroke="#5B8CFF" strokeWidth="2.2" strokeDasharray="520" strokeDashoffset={seen ? 0 : 520} style={{ transition: "stroke-dashoffset 2s ease-out" }} />
           <path d="M0 45 C 40 90, 80 90, 110 50 S 180 5, 220 50 S 270 90, 300 60" stroke="#6a6e64" strokeWidth="2" />
         </svg>
         <div className="mono mt-2 flex gap-5"><span className="flex items-center gap-2"><span className="dot" />flagged</span><span className="flex items-center gap-2"><span className="dot !bg-[#6a6e64] !shadow-none" />resolved</span></div>
@@ -440,13 +440,13 @@ export function PilotPicker() {
       </div>
       <div className="mt-5 grid gap-5 md:grid-cols-3">
         {tiers.map((t, i) => (
-          <div key={t.name} className={`glass glass-pad flex flex-col transition-[border-color,box-shadow] duration-500 ${i === tier ? "!border-[rgba(191,243,70,.45)] shadow-[0_0_80px_-30px_rgba(191,243,70,.5)]" : ""}`}>
+          <div key={t.name} className={`glass glass-pad flex flex-col transition-[border-color,box-shadow] duration-500 ${i === tier ? "!border-[rgba(91,140,255,.45)] shadow-[0_0_80px_-30px_rgba(91,140,255,.5)]" : ""}`}>
             <div className="flex items-start justify-between">
               <div>
                 <p className="mono">{t.name.toLowerCase()}</p>
                 <p className="mt-3 text-[1.55rem] font-medium leading-tight tracking-[-0.02em]">{t.sub}</p>
               </div>
-              {i === tier && <span className="rounded-md bg-[var(--lime)] px-2 py-1 font-mono text-[.7rem] text-[#0b0f02]">suggested</span>}
+              {i === tier && <span className="rounded-md bg-[var(--lime)] px-2 py-1 font-mono text-[.7rem] text-white">suggested</span>}
             </div>
             <ul className="mt-7 space-y-3 text-[.92rem] text-[#c4c8bd]">
               {t.pts.map((p) => <li key={p} className="flex gap-3"><Check size={15} className="mt-1 shrink-0 text-[#8b9086]" aria-hidden="true" />{p}</li>)}

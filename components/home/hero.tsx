@@ -76,12 +76,12 @@ export default function Hero() {
               <div className="relative mx-auto mt-6 h-[19rem] w-full max-w-[44rem] sm:mt-0 sm:h-[20.5rem]">
                 <svg viewBox="0 0 700 330" className="absolute inset-0 h-full w-full" fill="none" aria-hidden="true">
                   <defs>
-                    <linearGradient id="lg" x1="0" x2="1"><stop offset="0" stopColor="#BFF346" stopOpacity=".9" /><stop offset="1" stopColor="#BFF346" stopOpacity=".35" /></linearGradient>
+                    <linearGradient id="lg" x1="0" x2="1"><stop offset="0" stopColor="#5B8CFF" stopOpacity=".9" /><stop offset="1" stopColor="#5B8CFF" stopOpacity=".35" /></linearGradient>
                   </defs>
                   {["M160 165 C 210 165 215 80 262 80", "M160 165 C 210 165 215 250 262 250", "M420 80 C 480 80 480 150 530 150", "M420 250 C 480 250 480 150 530 150"].map((d, i) => (
                     <path key={i} d={d} stroke="url(#lg)" strokeWidth="1.4" className="flow" />
                   ))}
-                  <circle r="3.5" fill="#BFF346" className="pulse"><animateMotion dur="3.6s" repeatCount="indefinite" path="M160 165 C 210 165 215 80 262 80 L 420 80 C 480 80 480 150 530 150" /></circle>
+                  <circle r="3.5" fill="#5B8CFF" className="pulse"><animateMotion dur="3.6s" repeatCount="indefinite" path="M160 165 C 210 165 215 80 262 80 L 420 80 C 480 80 480 150 530 150" /></circle>
                 </svg>
                 <div className="node left-[1%] top-[40%]">Batch received<small>instructions v3</small></div>
                 <div className="node left-[37%] top-[10%] min-w-[10.5rem]">Quality check<small>against gold set</small></div>

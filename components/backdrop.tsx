@@ -97,12 +97,15 @@ const VERT = /* glsl */ `
     p.xy += uMouse * (0.12 + p.z * 0.04);
     gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
 
-    // colour: mostly lime, some yellow, a few cold blue-teal strands
-    vec3 lime = vec3(0.75, 0.95, 0.27);
-    vec3 yellow = vec3(0.95, 0.9, 0.3);
-    vec3 teal = vec3(0.18, 0.62, 0.95);
-    vec3 col = mix(lime, yellow, smoothstep(0.35, 0.9, aSeed));
-    col = mix(col, teal, smoothstep(0.82, 0.96, fract(aSeed * 7.31)) * 0.9);
+    // colour: logo palette - cyan, blue, violet, magenta
+    vec3 cyan = vec3(0.10, 0.88, 0.90);
+    vec3 blue = vec3(0.20, 0.42, 1.00);
+    vec3 violet = vec3(0.55, 0.30, 1.00);
+    vec3 pink = vec3(1.00, 0.28, 0.58);
+    float k = fract(aSeed * 3.7);
+    vec3 col = mix(cyan, blue, smoothstep(0.0, 0.35, k));
+    col = mix(col, violet, smoothstep(0.3, 0.65, k));
+    col = mix(col, pink, smoothstep(0.62, 0.95, k));
     vCol = col;
     float core = exp(-t * t * 7.0);
     float fade = 1.0 - smoothstep(0.78, 1.0, abs(t));
@@ -133,7 +136,7 @@ const DUST_V = /* glsl */ `
     gl_PointSize = uPx * (0.5 + aSeed * 1.6) / -mv.z;
     gl_Position = projectionMatrix * mv;
     vA = (0.12 + 0.35 * fract(aSeed * 91.7 + uTime * 0.3 * aSeed)) * (0.3 + uOp * 0.5);
-    vCol = mix(vec3(0.75, 0.95, 0.3), vec3(0.45, 0.75, 1.0), step(0.8, aSeed));
+    vCol = mix(vec3(0.35, 0.6, 1.0), vec3(1.0, 0.45, 0.75), step(0.8, aSeed));
   }
 `;
 const DUST_F = /* glsl */ `
